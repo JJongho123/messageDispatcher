@@ -1,26 +1,25 @@
 package org.example;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-public class ThreadPool {
+public class ThreadPool implements Runnable{
+    MessageService messageService;
 
-    public ThreadPool(int nThreads){
-        ExecutorService executor = Executors.newFixedThreadPool(nThreads);
-
-        for (int i = 0; i < nThreads; i++) {
-            executor.execute(new Task());
-        }
-
-        executor.shutdown();
+    ThreadPool(MessageService messageService){
+        this.messageService = messageService;
     }
 
-    public class Task implements Runnable{
+    @Override
+    public void run() {
 
-        @Override
-        public void run() {
-
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            messageService.sendMessage("Hello World");
         }
+
     }
 
 }
