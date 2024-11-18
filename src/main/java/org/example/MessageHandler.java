@@ -1,13 +1,10 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Objects;
-
-public class MessageService{
+public class MessageHandler {
 
     private final Message messageStrategy;
 
-    public MessageService(Message messageStrategy) {
+    public MessageHandler (Message messageStrategy) {
         this.messageStrategy = messageStrategy;
     }
 

@@ -3,13 +3,12 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
 
-        MessageService messageService = new MessageService(new DisplayMessage());
+        MessageHandler msgHandler = new MessageHandler(new DefaultMessage());
 
-        new Thread(new ThreadPool(messageService)).start();
+        MessageSendingRunnable  runnable = new MessageSendingRunnable(msgHandler);
 
-        messageService.sendMessage("안녕");
-        messageService.sendMessage("하이");
-        messageService.sendMessage("잘가");
+        ThreadPool threadPool = new ThreadPool(5);
+        threadPool.execute(runnable);
 
 
     }

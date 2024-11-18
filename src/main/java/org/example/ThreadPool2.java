@@ -4,13 +4,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedTransferQueue;
 
-public class ThreadPool implements Executor{
+public class ThreadPool2 implements Executor{
 
     private final BlockingQueue<Runnable> queue= new LinkedTransferQueue<>();
+    private final Thread[] threads;
 
-    public ThreadPool(int numThreads) {
+    public ThreadPool2(int numThreads) {
 
-        Thread[] threads = new Thread[numThreads];
+        threads = new Thread[numThreads];
         for (int i = 0; i < numThreads; i++) {
             threads[i]=new Thread(()->{
                 try {
