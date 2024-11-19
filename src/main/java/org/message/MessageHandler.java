@@ -1,4 +1,4 @@
-package org.example;
+package org.message;
 
 public class MessageHandler {
 
